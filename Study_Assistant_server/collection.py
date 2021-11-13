@@ -198,4 +198,4 @@ def submit(request):
             return response(meta, data, 500)
     except Exception as e:
         meta['msg'] = e
-        return response(meta, data, 400) 
+        return response(meta, data, 400)
