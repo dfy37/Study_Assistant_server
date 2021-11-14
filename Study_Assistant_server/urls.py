@@ -35,6 +35,7 @@ urlpatterns = [
     path('entry/editentry', entry.editEntry),
     path('entry/getentryid', entry.getEntryId),
     path('entry/updateentry', entry.updateEntry),
+    path('entry/entrylatexparser', entry.entryLatexParser),
 ]
 
 

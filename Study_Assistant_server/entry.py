@@ -9,7 +9,7 @@ File content: entry operations
 
 import json
 from Model.models import Entry, UserInfo, UserFavori
-from .utils import response, checkLoginStatus
+from .utils import response, checkLoginStatus, latexParser
 from django.db.models import Q
 from django.views.decorators.csrf import csrf_exempt
 
@@ -239,6 +239,32 @@ def updateEntry(request):
         else:
             meta['msg'] = "user doesn't exist"
             return response(meta, data, 500)
+    except Exception as e:
+        meta['msg'] = e
+        return response(meta, data, 400)
+
+# entry latex parser
+# req:
+#   method: GET
+#   params: type
+#           str
+#           theme
+def entryLatexParser(req):
+    # response to the wechat program
+    # meta:
+    #     msg: message of response
+    # data:
+    #     svg:
+    meta = {}
+    data = {}
+    try:
+        type = req.GET['type']
+        str = req.GET['str']
+        theme = req.GET['theme']
+        svg = latexParser(type, str, theme)
+        meta['msg'] = "success"
+        data['svg'] = svg
+        return response(meta, data, 200)
     except Exception as e:
         meta['msg'] = e
         return response(meta, data, 400)

@@ -6,6 +6,8 @@ Created on Thu Oct 14 20:50:56 2021
 
 File content: utilities
 """
+
+from subprocess import check_output
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseServerError
 from Model.models import UserInfo
 import time
@@ -57,3 +59,13 @@ def response(meta, data, status_code):
         return HttpResponseBadRequest(meta['msg'])
     else:
         return HttpResponseServerError(meta['msg'])
+
+# latex fomulation parser
+# @params:
+# type: tex or yuml
+# str: str to be transformed
+# theme: dark or light
+def latexParser(type, str, theme):
+    bytesTxt = check_output(['node', './Study_Assistant_server/Markdown-Server/index.js', type, str, theme], timeout=100)
+    svg = bytesTxt.decode('utf8').strip()
+    return svg
