@@ -8,6 +8,9 @@ File content: entry operations
 """
 
 import json
+
+from django.http import HttpResponse
+
 from Model.models import Entry, UserInfo, UserFavori
 from .utils import response, checkLoginStatus, latexParser
 from django.db.models import Q
@@ -254,7 +257,7 @@ def entryLatexParser(req):
     # meta:
     #     msg: message of response
     # data:
-    #     svg:
+    #     svg: image
     meta = {}
     data = {}
     try:
@@ -262,9 +265,7 @@ def entryLatexParser(req):
         str = req.GET['str']
         theme = req.GET['theme']
         svg = latexParser(type, str, theme)
-        meta['msg'] = "success"
-        data['svg'] = svg
-        return response(meta, data, 200, content_type='image/svg+xml;charset=utf-8')
+        return HttpResponse(svg, status=200, content_type='image/svg+xml;charset=utf-8')
     except Exception as e:
         meta['msg'] = e
         return response(meta, data, 400)
