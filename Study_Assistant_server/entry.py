@@ -264,7 +264,7 @@ def entryLatexParser(req):
         svg = latexParser(type, str, theme)
         meta['msg'] = "success"
         data['svg'] = svg
-        return response(meta, data, 200)
+        return response(meta, data, 200, content_type='image/svg+xml;charset=utf-8')
     except Exception as e:
         meta['msg'] = e
         return response(meta, data, 400)

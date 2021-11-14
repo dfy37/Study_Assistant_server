@@ -49,12 +49,13 @@ def checkLoginStatus(userId):
 # meta: response infomation
 # data: response content
 # status_code: status code
-def response(meta, data, status_code):
+# content_type
+def response(meta, data, status_code, content_type=None):
     httpRes = {}
     httpRes['meta'] = meta
     httpRes['data'] = data
     if status_code == 200:
-        return HttpResponse(json.dumps(httpRes), status=status_code)
+        return HttpResponse(json.dumps(httpRes), status=status_code, content_type=content_type)
     elif status_code == 400:
         return HttpResponseBadRequest(meta['msg'])
     else:
