@@ -11,8 +11,10 @@ import json
 
 from django.http import HttpResponse
 
-from Model.models import Entry, UserInfo, UserFavori
-from .utils import response, checkLoginStatus, latexParser
+from AppUserInfo.models import UserInfo
+from AppCollection.models import UserFavori
+from AppEntry.models import Entry
+from Study_Assistant_server.utils import response, checkLoginStatus, latexParser
 from django.db.models import Q
 from django.views.decorators.csrf import csrf_exempt
 

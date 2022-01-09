@@ -9,7 +9,7 @@ File content: utilities
 
 from subprocess import check_output
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseServerError
-from Model.models import UserInfo
+from AppUserInfo.models import UserInfo
 import time
 import json
 

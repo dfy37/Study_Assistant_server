@@ -9,9 +9,8 @@ File content: user logs in
 
 import requests
 import json
-from Model.models import UserInfo, AppInfo
-from .constants import const
-from .utils import response
+from .models import UserInfo, AppInfo
+from Study_Assistant_server.utils import response
 from django.views.decorators.csrf import csrf_exempt
 
 # md5 encryption

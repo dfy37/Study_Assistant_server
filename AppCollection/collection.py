@@ -8,8 +8,10 @@ File content: collections of user
 """
 
 import datetime, time, json
-from Model.models import UserInfo, UserFavori, UserFavoriToken, Entry
-from .utils import checkLoginStatus, response, dateTimeToTimeStamp
+from AppEntry.models import Entry
+from AppUserInfo.models import UserInfo
+from AppCollection.models import UserFavori, UserFavoriToken
+from Study_Assistant_server.utils import checkLoginStatus, response, dateTimeToTimeStamp
 from django.views.decorators.csrf import csrf_exempt
 
 # return collection list of the server to the client

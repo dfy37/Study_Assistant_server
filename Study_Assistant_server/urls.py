@@ -15,27 +15,13 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
-from . import login, collection, entry
+from django.urls import path, include
 
 urlpatterns = [
     path('admin', admin.site.urls),
-    
-    path('login', login.login),
-    
-    # path('collection/islatest', collection.islatest),
-    path('collection/submit', collection.submit),
-    path('collection/sync', collection.sync),
-    path('collection/addentry', collection.addEntry),
-    path('collection/delentry', collection.delEntry),
-    
-    path('entry/entrysearch', entry.entrySearch),
-    path('entry/entrydetail', entry.entryDetail),
-    path('entry/addentry', entry.addEntry),
-    path('entry/editentry', entry.editEntry),
-    path('entry/getentryid', entry.getEntryId),
-    path('entry/updateentry', entry.updateEntry),
-    path('entry/entrylatexparser', entry.entryLatexParser),
+    path('login/', include('AppUserInfo.urls')),
+    path('collection/', include('AppCollection.urls')),
+    path('entry/', include('AppEntry.urls')),
 ]
 
 
